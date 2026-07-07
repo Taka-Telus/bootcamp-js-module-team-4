@@ -10,17 +10,26 @@ function esVacio(texto) {
 function alMenos3Caracteres(texto) {
     return texto.length >= 3;
 }
+function largoDelNombre(texto) {
+    return texto.trim().length <= 15;
+}
 
 
 nicknameButton.addEventListener("click", (e) => {
     e.preventDefault();
     let nombre = nicknameInput.value
-
-    if (!esVacio(nombre) && alMenos3Caracteres(nombre)) {
-        error.textContent = ``;
+    
+    if (!esVacio(nombre) && alMenos3Caracteres(nombre) && largoDelNombre(nombre)) {
+        error.style.display = 'none';
         localStorage.setItem('nickname', nicknameInput.value);
-
+        
     } else {
-        error.textContent = `Error`
+        mensajeError = 'Completa con al menos con 3 caracteres'
+        
+        if (!largoDelNombre(nombre)){
+            mensajeError = 'El Maximo de caracteres es de 15'
+        }
+        error.textContent = mensajeError;
+        error.style.display = 'block';
     }
 });
