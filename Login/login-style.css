@@ -1,16 +1,17 @@
-body{
+body {
     background-color: aqua;
     display: flex;
     align-items: center;
     justify-content: center;
 
     height: 100vh;
-    
+
     overflow: hidden;
-    margin: 0px;
+    margin: 15px;
 }
-.nickname-container{
-    max-width: 400px;
+
+.nickname-container {
+    max-width: 50vh;
     height: auto;
     padding: 30px;
     background-color: rgb(187, 255, 0);
@@ -23,9 +24,11 @@ body{
     justify-content: center;
     text-align: center;
 }
-.text-login{
+
+.text-login {
     margin: 50px 0px;
 }
+
 .nickname-inputs {
     display: flex;
     align-items: center;
@@ -63,3 +66,8 @@ body{
     background-color: #76e956;
 }
 
+#nickname-error {
+    color: red;
+    margin-top: 8px;
+    min-height: 1.2em;
+}
