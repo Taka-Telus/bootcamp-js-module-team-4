@@ -1,0 +1,47 @@
+{
+  "id": "abc123",
+  "title": "Football History",
+  "author": "Team 1",
+  "image": "https://...",
+  "questions": [
+    {
+      "text": "In what year was the first World Cup?",
+      "options": [
+        "1930",
+        "1950",
+        "1920",
+        "1940"
+      ]
+    },
+    
+    {
+      "text": "In what year was the first World Cup?",
+      "options": [
+        "1930",
+        "1950",
+        "1920",
+        "1940"
+      ]
+    },
+
+    {
+      "text": "In what year was the first World Cup?",
+      "options": [
+        "1930",
+        "1950",
+        "1920",
+        "1940"
+      ]
+    },
+
+    {
+      "text": "In what year was the first World Cup?",
+      "options": [
+        "1930",
+        "1950",
+        "1920",
+        "1940"
+      ]
+    }
+  ]
+}

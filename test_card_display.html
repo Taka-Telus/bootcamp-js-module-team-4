@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/style.css">
+    <title>Partida</title>
+</head>
+
+<body>
+
+    <div class="question-title" id="question-title"></div>
+
+    <div class="option-card" id="card-1"></div>
+
+    <div class="option-card" id="card-2"></div>
+
+    <div class="option-card" id="card-3"></div>
+
+    <div class="option-card" id="card-4"></div>
+
+    <script>
+        const card_1 = document.querySelector("#card-1");
+        const card_2 = document.querySelector("#card-2");
+        const card_3 = document.querySelector("#card-3");
+        const card_4 = document.querySelector("#card-4");
+
+
+
+
+
+        async function loadData() {
+            let response = await fetch(jsonId);
+            let data = await response.json();
+            console.log(data);
+        }
+
+        loadData();
+
+        let gameObject = JSON.parse(game);
+
+
+        function shuffle(array) {
+            array.sort(() => Math.random() - 0.5)
+        }
+
+
+        for (question in gameObject.questions) {
+            shuffle(question.options);
+            document.querySelector("question-title").textContent = text;
+            document.querySelector("#card-1").textContent = options[0];
+            document.querySelector("#card-2").textContent = options[1];
+            document.querySelector("#card-3").textContent = options[2];
+            document.querySelector("#card-4").textContent = options[3];
+        }
+
+
+        let timeout;
+
+        function comenzarJuego() {
+            timeout = setTimeout(() => {
+                alert("¡Se acabó el tiempo!");
+            }, 30000);
+        }
+
+        function responder() {
+            clearTimeout(timeout);
+            if (clicked_card.answer == json.answer[0]) {
+                points += setTimeout / 10;
+            } else {
+                //womp womp 
+            }
+        }
+
+
+
+    </script>
+</body>
+
+</html>

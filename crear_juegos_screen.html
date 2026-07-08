@@ -1,0 +1,60 @@
+<html>
+  <body>
+    <ul id="game-list"></ul>
+
+    <script>
+      const games = [
+        {
+          id: "g1",
+          title: "Mundial 2026",
+          author: "Cátedra",
+          image:
+            "https://digitalhub.fifa.com/transform/598a1d22-62b6-486b-849c-e8bf55894179/FIFA_FWC26_Tournament-Thumbnail-4-3",
+          difficulty: "Fácil",
+          questionCount: 2,
+        },
+        {
+          id: "4522a58a-1a6d-4cdc-b67d-a66e6890e5fd",
+          title: "Geografía del Mundo",
+          author: "Cátedra",
+          image: "https://ichef.bbci.co.uk/images/ic/976xn/p070bqpj.jpg",
+          difficulty: "Medio",
+          questionCount: 10,
+        },
+        {
+          id: "8977e26b-f487-4046-8bd9-aea01e6b180c",
+          title: "Rock Nacional Argentino",
+          author: "Cátedra",
+          image:
+            "https://www.cultura.gob.ar/media/uploads/noticias/seminario_rock_3x2.jpg",
+          difficulty: "Difícil",
+          questionCount: 10,
+        },
+      ];
+
+      const list = document.getElementById("game-list");
+
+      games.forEach((game) => {
+        const li = document.createElement("li");
+        li.classList.add("juego");
+        li.innerHTML = `
+    <li data-id="${game.id}">
+        ${game.title}
+        <button>Editar</button>
+        <button>Jugar</button>
+    </li>
+`;
+
+        list.append(li);
+      });
+
+      document
+        .getElementById("game-list")
+        .addEventListener("click", (event) => {
+          const item = event.target.closest("li");
+          console.log(event.target, event.currentTarget, item.dataset.id);
+        });
+    </script>
+  </body>
+</html>
+Message bootcamp-2026-with-students
