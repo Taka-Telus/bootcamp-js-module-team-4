@@ -19,7 +19,7 @@ h2 {
     height: auto;
     padding: 30px;
     background-color: rgb(255, 255, 255);
-    font-family: Josefin Sans;
+    font-family: Montserrat;
     border-radius: 20px;
 
     display: flex;
@@ -42,17 +42,28 @@ h2 {
     border-radius: 10px;
     width: 80%;
 }
+.nickname-input-order{
+    padding: 15px 20px;
+    width: calc(100% - 30px);
+    border: 1px solid #545a5e2d;
+    background-color: #E2E2E2;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+.fa-pencil{
+    color: rgb(90, 90, 90);
+}
 
 #nickname-player {
-    border: none;
     outline: none;
-    padding: 0.5rem 0.7rem;
+    background-color: transparent;
+    border: none;
     font-size: 0.9rem;
     width: 100%;
     color: rgb(90, 90, 90);
-    font-family: Josefin Sans;
-    border: 1px solid #545a5e2d;
-    border-radius: 5px;
+    font-family: Montserrat;
 }
 
 #nickname-button {
