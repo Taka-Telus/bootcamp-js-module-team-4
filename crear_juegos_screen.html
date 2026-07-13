@@ -1,60 +1,77 @@
 <html>
-  <body>
-    <ul id="game-list"></ul>
 
-    <script>
-      const games = [
-        {
-          id: "g1",
-          title: "Mundial 2026",
-          author: "Cátedra",
-          image:
-            "https://digitalhub.fifa.com/transform/598a1d22-62b6-486b-849c-e8bf55894179/FIFA_FWC26_Tournament-Thumbnail-4-3",
-          difficulty: "Fácil",
-          questionCount: 2,
-        },
-        {
-          id: "4522a58a-1a6d-4cdc-b67d-a66e6890e5fd",
-          title: "Geografía del Mundo",
-          author: "Cátedra",
-          image: "https://ichef.bbci.co.uk/images/ic/976xn/p070bqpj.jpg",
-          difficulty: "Medio",
-          questionCount: 10,
-        },
-        {
-          id: "8977e26b-f487-4046-8bd9-aea01e6b180c",
-          title: "Rock Nacional Argentino",
-          author: "Cátedra",
-          image:
-            "https://www.cultura.gob.ar/media/uploads/noticias/seminario_rock_3x2.jpg",
-          difficulty: "Difícil",
-          questionCount: 10,
-        },
-      ];
+<body>
+  <ul id="game-list"></ul>
 
-      const list = document.getElementById("game-list");
+  <script>
+    async function loadGames() {
+      try {
+        const response = await fetch("./games/game_ids.json");
 
-      games.forEach((game) => {
-        const li = document.createElement("li");
-        li.classList.add("juego");
-        li.innerHTML = `
-    <li data-id="${game.id}">
-        ${game.title}
-        <button>Editar</button>
-        <button>Jugar</button>
-    </li>
-`;
+        if (!response.ok) {
+          throw new Error("No se pudo cargar game_ids.json");
+        }
 
-        list.append(li);
-      });
+        const games = await response.json();
+        const gameList = document.getElementById("game-list");
 
-      document
-        .getElementById("game-list")
-        .addEventListener("click", (event) => {
-          const item = event.target.closest("li");
-          console.log(event.target, event.currentTarget, item.dataset.id);
+        gameList.innerHTML = "";
+
+        games.forEach((game) => {
+          const li = document.createElement("li");
+          li.classList.add("juego");
+          li.dataset.id = game.id;
+
+          li.innerHTML = `
+        <img src="${game.image}" alt="${game.title}" width="100">
+        <h3>${game.title}</h3>
+        <p>Autor: ${game.author}</p>
+        <p>Dificultad: ${game.difficulty}</p>
+        <p>Preguntas: ${game.questionCount}</p>
+
+        <button class="edit">Editar</button>
+        <button class="play">Jugar</button>
+      `;
+
+          gameList.appendChild(li);
         });
-    </script>
-  </body>
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    async function loadGame(id) {
+      const response = await fetch(`./games/${id}.json`);
+
+      if (!response.ok) {
+        throw new Error(`No se pudo cargar el juego ${id}`);
+      }
+
+      return await response.json();
+    }
+
+    document.getElementById("game-list").addEventListener("click", async (event) => {
+      const item = event.target.closest(".juego");
+
+      if (!item) return;
+
+      const id = item.dataset.id;
+
+      if (event.target.classList.contains("play")) {
+        const game = await loadGame(id);
+        console.log("Jugar:", game);
+        // startGame(game);
+      }
+
+      if (event.target.classList.contains("edit")) {
+        const game = await loadGame(id);
+        console.log("Editar:", game);
+        // editGame(game);
+      }
+    });
+
+    loadGames();
+  </script>
+</body>
+
 </html>
-Message bootcamp-2026-with-students

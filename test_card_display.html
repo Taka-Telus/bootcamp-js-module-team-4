@@ -46,34 +46,61 @@
         }
 
 
-        for (question in gameObject.questions) {
-            shuffle(question.options);
-            document.querySelector("question-title").textContent = text;
-            document.querySelector("#card-1").textContent = options[0];
-            document.querySelector("#card-2").textContent = options[1];
-            document.querySelector("#card-3").textContent = options[2];
-            document.querySelector("#card-4").textContent = options[3];
-        }
+        let total_score = 0;
 
+        async function jugar() {
+            for (let question of gameObject.questions) {
+                shuffle(question.options);
 
-        let timeout;
+                document.querySelector("#question-title").textContent = question.text;
+                document.querySelector("#card-1").textContent = question.options[0];
+                document.querySelector("#card-2").textContent = question.options[1];
+                document.querySelector("#card-3").textContent = question.options[2];
+                document.querySelector("#card-4").textContent = question.options[3];
 
-        function comenzarJuego() {
-            timeout = setTimeout(() => {
-                alert("¡Se acabó el tiempo!");
-            }, 30000);
-        }
+                let tiempo = await iniciarTimer();
 
-        function responder() {
-            clearTimeout(timeout);
-            if (clicked_card.answer == json.answer[0]) {
-                points += setTimeout / 10;
-            } else {
-                //womp womp 
+                total_score = calcularPuntaje(tiempo, total_score);
             }
+
+            console.log("Puntaje final:", total_score);
         }
 
 
+        function iniciarTimer() {
+            return new Promise((resolve) => {
+                let tiempoRestante = 30;
+                let inicio = performance.now();
+                let terminado = false;
+
+                const timeout = setTimeout(() => {
+                    if (!terminado) {
+                        terminado = true;
+                        resolve(0);
+                    }
+                }, 30000);
+
+                document.querySelectorAll(".card").forEach(card => {
+                    card.onclick = () => {
+                        if (terminado) return;
+
+                        terminado = true;
+                        clearTimeout(timeout);
+
+                        const transcurrido = (performance.now() - inicio) / 1000;
+                        tiempoRestante = Math.max(0, 30 - transcurrido);
+
+                        resolve(tiempoRestante);
+                    };
+                });
+            });
+        }
+
+
+        function calcularPuntaje(time, current_score) {
+            let question_score = time * 10;
+            return current_score + question_score;
+        }
 
     </script>
 </body>
