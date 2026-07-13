@@ -44,7 +44,7 @@ async function getGames() {
         });
     } catch (error) {
         const li = document.createElement("li");
-        li.innerHTML = `Error al conectar con la API: ${error}`
+        li.innerHTML = `Error al conectar con la API: ${error}` //terminar esta aprte
     }
 }
 
