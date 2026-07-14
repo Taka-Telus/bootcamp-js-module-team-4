@@ -1,0 +1,36 @@
+html body {
+    margin: 0px;
+    font-family: Montserrat;
+}
+
+h1 {
+    margin: 0px;
+    margin-left: 6px;
+    color: #2B8000;
+}
+.puntajeContainer span{
+    color: #404A3A;
+    margin-left: 10px;
+}
+header div span {
+    color: #2B8000;
+}
+
+header {
+    height: 30px;
+    width: 95%;
+    background-color: rgb(255, 255, 255);
+    padding: 2% 3%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    overflow: hidden;
+    box-shadow: 0px -6px 15px 0px;
+}
+
+header div {
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+    align-items: center;
+}
