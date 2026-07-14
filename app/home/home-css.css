@@ -44,6 +44,11 @@ header div {
     font-size: 14px;
 }
 
+.puntajeContainer span{ 
+    color: black;
+    margin: 6px;
+}
+
 .welcomeSection {
     width: 98%;
     height: 150px;
@@ -199,3 +204,59 @@ header div {
     right: 20px;
 }
 
+.opacity{
+
+    width: 100%;
+    height: 100%;
+    position: fixed;
+
+    z-index: 7;
+    top: 0;
+    left: 0;
+    
+    background-color: rgba(0, 0, 0, 0.344);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(90px); 
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+#comeBackLater{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 8;
+    
+    padding: 5% ;
+    border-radius: 10px;
+    bottom: 50%;
+    width: 90%;
+    height: 90%;
+    max-width: 350px;
+    max-height: 350px;
+    background-color: white;
+}
+#comeBackLater div{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+#comeBackLater div span{
+    font-size: 48px;
+    color: red;
+}
+#comeBAckLater div p {
+    margin: 20px;
+}
+#backToLoginButton{
+    padding: 10px;
+    width: 80%;
+    background-color: #2B8000;
+    color: white;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+}
