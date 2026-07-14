@@ -6,20 +6,31 @@ body {
     height: 100vh;
     overflow: hidden;
     margin: 15px;
+    font-family: Montserrat;
 }
+
 h2 {
     font-size: 30px;
     font-weight: 800;
     color: #2B8000;
-    
+
+}
+
+.controller span {
+    border-radius: 100%;
+    background-color: #2B8000;
+    padding: 10px;
+    color: white;
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(90px);
 }
 
 .nickname-container {
-    max-width: 50vh;
+    max-width: 40vw;
     height: auto;
     padding: 30px;
     background-color: rgb(255, 255, 255);
-    font-family: Montserrat;
     border-radius: 20px;
 
     display: flex;
@@ -44,7 +55,8 @@ h2 {
     border-radius: 10px;
     width: 80%;
 }
-.nickname-input-order{
+
+.nickname-input-order {
     padding: 15px 20px;
     width: calc(100% - 40px);
     border: 1px solid #545a5e2d;
@@ -53,8 +65,10 @@ h2 {
     border-radius: 5px;
     display: flex;
     justify-content: space-between;
+    max-width: 398px;
 }
-.fa-pencil{
+
+.fa-pencil {
     color: rgb(90, 90, 90);
 }
 
@@ -65,7 +79,8 @@ h2 {
     font-size: 0.9rem;
     width: 100%;
     color: rgb(90, 90, 90);
-    font-family: Montserrat;
+
+
 }
 
 #nickname-button {
@@ -82,7 +97,8 @@ h2 {
     color: white;
     font-family: Montserrat;
     padding: 20px 20px;
-    width: 100%;
+    width: 101%;
+    max-width: 440px;
 }
 
 .bi bi-play ::before {
@@ -95,19 +111,29 @@ h2 {
     margin-top: 8px;
     min-height: 1.2em;
 }
-.fa-gamepad{ 
+
+.fa-gamepad {
     border-radius: 100%;
     padding: 10px;
     background-color: #2B8000;
     width: 30px;
     height: auto;
 }
-.text-login{
+
+.text-login {
     color: #545A5E;
-    font-weight: 350 ;
+    font-weight: 350;
 }
-.database-text{
+
+.database-text {
     color: #545A5E99;
     font-size: small;
 }
 
+.database-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: #545A5E99;
+    margin-top: 30px;
+}
