@@ -1,14 +1,27 @@
 
 header{
     background-color: gainsboro;
-    width: 105%;
-    height: 100px;
+    display: flex;
+    width: 100%;
+    height: 70px;
     margin-top: -10px;
     margin-left: -20px;
+    justify-content:space-between;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+
 }
 
 body{
     background-color: whitesmoke;
+}
+
+.game_content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;          
 }
 
 .option-card{
@@ -19,6 +32,10 @@ body{
     border-color: gray;
     border-radius: 5px;
     margin: 10px;
+    display: flex;
+    justify-content: center;
+
+    align-items: center;
 }
 
 #next-option {
@@ -33,7 +50,14 @@ body{
     cursor: not-allowed;
 }
 
-.option-card.selected {
-    border: 3px solid #2ecc71;
-    background: #d4edda;
+
+
+.option-card.correct {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.option-card.incorrect {
+    background-color: #F44336;
+    color: white;
 }

@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/style.css">
+    <script src="assets/script/game_screen_script.js"></script>
     <title>Partida</title>
 </head>
 
@@ -24,14 +25,14 @@
         </div>
     </header>
 
-    <div>
+    <div class="game_content">
         <div class="progress-bar">
             <div class="question-number"></div>
-            <div class="time-left"></div>
+            <div class="time-left"><p>l</p></div>
             <div class="time-bar"></div>
         </div>
 
-        <div class="question-title" id="question-title"></div>
+        <h1 class="question-title" id="question-title"></h1>
 
         <div class="option-card" id="card-1"></div>
 
@@ -44,163 +45,9 @@
         <button id="next-option" hidden>Siguiente Pregunta</button>
     </div>
 
+    <ul class="scoreboard" id="scoreboard"></ul>
 
-    <script>
-
-
-        let gameObject;
-        let total_score = 0;
-
-        async function loadData() {
-            const params = new URLSearchParams(window.location.search);
-            const id = params.get("id");
-
-            if (!id) {
-                console.error("No se recibió un id en la URL.");
-                return;
-            }
-
-            const response = await fetch(
-                `https://quiz-api.cesar-kastli.workers.dev/games/${id}`
-            );
-
-            if (!response.ok) {
-                throw new Error("No se pudo obtener el juego.");
-            }
-
-            gameObject = await response.json();
-
-            jugar();
-        }
-
-        loadData();
-
-        function shuffle(array) {
-            array.sort(() => Math.random() - 0.5);
-        }
-
-        async function jugar() {
-            for (const question of gameObject.questions) {
-
-                // Guardar la respuesta correcta antes de mezclar
-                const correctAnswer = question.options[0];
-
-                // Copiar opciones para no modificar el arreglo original
-                const options = [...question.options];
-                shuffle(options);
-
-                document.querySelector("#question-title").textContent = question.text;
-
-                const cards = document.querySelectorAll(".option-card");
-
-                cards.forEach((card, index) => {
-                    card.textContent = options[index];
-                    card.dataset.option = options[index];
-                    card.classList.remove("selected", "correct", "incorrect");
-                });
-
-                const tiempo = await iniciarTimer(correctAnswer);
-
-                total_score = calcularPuntaje(tiempo, total_score);
-            }
-
-            console.log("Puntaje final:", total_score);
-        }
-
-        function calcularPuntaje(time, current_score) {
-            return current_score + (time * 10);
-        }
-
-        function iniciarTimer(correctAnswer) {
-            return new Promise((resolve) => {
-
-                let inicio = performance.now();
-                let terminado = false;
-
-                const nextOption = document.querySelector("#next-option");
-                nextOption.hidden = true;
-
-                const cards = document.querySelectorAll(".option-card");
-
-                const timeout = setTimeout(() => {
-                    if (terminado) return;
-
-                    terminado = true;
-
-                    // Mostrar la respuesta correcta
-                    cards.forEach(card => {
-                        if (card.dataset.option === correctAnswer) {
-                            card.classList.add("correct");
-                        }
-                        card.onclick = null;
-                    });
-
-                    nextOption.hidden = false;
-
-                    nextOption.onclick = () => {
-                        nextOption.hidden = true;
-                        nextOption.onclick = null;
-
-                        cards.forEach(card => {
-                            card.classList.remove("selected", "correct", "incorrect");
-                        });
-
-                        resolve(0);
-                    };
-                }, 30000);
-
-                cards.forEach(card => {
-
-                    card.onclick = () => {
-
-                        if (terminado) return;
-
-                        terminado = true;
-                        clearTimeout(timeout);
-
-                        const transcurrido = (performance.now() - inicio) / 1000;
-                        const tiempoRestante = Math.max(0, 30 - transcurrido);
-
-                        // Deshabilitar todas las tarjetas
-                        cards.forEach(c => c.onclick = null);
-
-                        // Marcar la respuesta elegida
-                        card.classList.add("selected");
-
-                        if (card.dataset.option === correctAnswer) {
-                            card.classList.add("correct");
-                        } else {
-                            card.classList.add("incorrect");
-
-                            // Mostrar cuál era la correcta
-                            cards.forEach(c => {
-                                if (c.dataset.option === correctAnswer) {
-                                    c.classList.add("correct");
-                                }
-                            });
-                        }
-
-                        nextOption.hidden = false;
-
-                        nextOption.onclick = () => {
-                            nextOption.hidden = true;
-                            nextOption.onclick = null;
-
-                            cards.forEach(c => {
-                                c.classList.remove("selected", "correct", "incorrect");
-                            });
-
-                            resolve(tiempoRestante);
-                        };
-                    };
-                });
-            });
-        }
-    </script>
-
-
-
-    </script>
+       
 </body>
 
 </html>
