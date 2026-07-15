@@ -8,10 +8,12 @@ h1 {
     margin-left: 6px;
     color: #2B8000;
 }
-.puntajeContainer span{
+
+.puntajeContainer span {
     color: #404A3A;
     margin-left: 10px;
 }
+
 header div span {
     color: #2B8000;
 }
@@ -33,4 +35,123 @@ header div {
     flex-direction: row;
     cursor: pointer;
     align-items: center;
+}
+
+input {
+    border: 1px solid #E2E2E2;
+    border-radius: 5px;
+}
+
+h3 {
+    color: #404A3A;
+    font-size: 14px;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 30px;
+    width: 100%;
+    max-width: 800px;
+}
+
+.basicInformationContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.information h2 {
+    color: #2B8000;
+
+}
+
+.information {
+    width: 63%;
+    max-width: 800px;
+    border: 1px solid #E2E2E2;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.imageSelector {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #E2E2E2;
+    width: 25%;
+    padding: 20px;
+    height: 85%;
+    border-radius: 5px;
+}
+
+.addQuestionContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 15px 0px;
+    width: 100%;
+}
+
+#questions {
+    width: 100%;
+}
+
+.insertQuestion {
+    background-color: #F3F3F4;
+    border: 1px solid #E2E2E2;
+    border-radius: 10px 10px 0 0;
+    padding: 10px;
+    width: 97%;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+}
+
+.selectAnswer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 30% 30%;
+    justify-content: space-around;
+    align-content: space-around;
+    padding: 10px;
+    border: 1px solid #E2E2E2;
+    width: 97%;
+    border-top: none;
+    border-radius: 0 0 10px 10px;
+}
+
+.answerContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #E2E2E2;
+    width: 85%;
+    border-radius: 5px;
+    padding: 0 15px;
+
+}
+.answerContainer button{
+    border: 1px solid #E2E2E2;
+    border-radius: 100%;
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    margin-left: 1.5%;
+}
+
+.inputAnswer {
+    width: 82%;
+    height: 20px;
 }
