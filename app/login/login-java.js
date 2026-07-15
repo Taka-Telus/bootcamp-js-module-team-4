@@ -24,7 +24,8 @@ nicknameButton.addEventListener("click", (e) => {
     if (!esVacio(nombre) && alMenos3Caracteres(nombre) && largoDelNombre(nombre)) {
         error.style.display = 'none';
         localStorage.setItem('nickname', nicknameInput.value);
-        
+
+         window.location.href = "../home/home.html" ;
     } else {
         mensajeError = 'Completa con al menos con 3 caracteres'
         
