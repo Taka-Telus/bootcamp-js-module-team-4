@@ -30,6 +30,11 @@ body:json {
   }
 }
 
+vars:pre-request {
+  gameId: 1bd568b6-42ad-4a05-aa5e-5501e95aeaea
+  questionId1: 5ca3c4e8-59b3-414c-8406-64d2b334600a
+}
+
 assert {
   res.status: eq 200
   res.body.questions: length 2
