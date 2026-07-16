@@ -41,7 +41,7 @@
     }
 
     async function loadGame(id) {
-      const response = await fetch(`./games/${id}.json`);
+      const response = await fetch(`./bruno/${id}.json`);
 
       if (!response.ok) {
         throw new Error(`No se pudo cargar el juego ${id}`);

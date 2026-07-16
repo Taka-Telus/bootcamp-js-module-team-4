@@ -1,0 +1,86 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+
+<body>
+    <header></header>
+    <ul id="game-list"></ul>
+
+    <script>
+        async function loadGames() {
+            try {
+                const response = await fetch(
+                    `https://quiz-api.cesar-kastli.workers.dev/games`
+                );
+
+                if (!response.ok) {
+                    throw new Error("No se pudo obtener el juego.");
+                }
+
+
+                const games = await response.json();
+                const gameList = document.getElementById("game-list");
+
+                gameList.innerHTML = "";
+
+                games.forEach((game) => {
+                    const li = document.createElement("li");
+                    li.classList.add("juego");
+                    li.dataset.id = game.id;
+
+                    li.innerHTML = `
+        <img src="${game.image}" alt="${game.title}" width="100">
+        <h3>${game.title}</h3>
+        <p>Autor: ${game.author}</p>
+        <p>Dificultad: ${game.difficulty}</p>
+        <p>Preguntas: ${game.questionCount}</p>
+
+        <button class="edit">Editar</button>
+        <button class="play">Jugar</button>
+      `;
+
+                    gameList.appendChild(li);
+                });
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+        async function loadGame(id) {
+            const response = await fetch(
+                `https://quiz-api.cesar-kastli.workers.dev/games/${id}`
+            );
+
+            if (!response.ok) {
+                throw new Error(`No se pudo cargar el juego ${id}`);
+            }
+
+            return await response.json();
+        }
+
+        document.getElementById("game-list").addEventListener("click", (event) => {
+            const item = event.target.closest(".juego");
+
+            if (!item) return;
+
+            const id = item.dataset.id;
+
+            if (
+                event.target.classList.contains("play") ||
+                event.target.closest(".juego")
+            ) {
+                window.location.href = `game_screen.html?id=${id}`;
+            }
+
+            if (event.target.classList.contains("edit")) {
+                window.location.href = `edit_game.html?id=${id}`;
+            }
+        });
+
+        loadGames();
+    </script>
+</body>
+
+</html>
