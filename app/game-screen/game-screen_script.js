@@ -388,7 +388,7 @@ async function finishGame() {
 
         body: JSON.stringify({
 
-            playerName: "invitado",
+            playerName: (localStorage.nickname),
 
             score: Math.round(total_score)
 
@@ -466,7 +466,7 @@ async function finishGame() {
 
 
     homeButton.onclick = () => {
-        window.location.href = "http://127.0.0.1:5500/app/home/home.html";
+        window.location.href = "../home/home.html";
     };
 
 
