@@ -22,6 +22,7 @@
 <body>
     <header>
         <div class="quiz-tittle">
+            <span class="material-symbols-outlined" id="backHome">arrow_back</span>
             <span class="material-icons">quiz</span>
             <h1>TriviaBlast</h1>
         </div>
@@ -40,7 +41,7 @@
                 <h2>Informacion Basica</h2>
                 <div>
                     <h3>Titulo del juego</h3>
-                    <input id="title-game" />
+                    <input id="tittleGame" />
                 </div>
                 <div>
                     <h3>Descripcion Corta</h3>
@@ -48,7 +49,11 @@
                 </div>
                 <div>
                     <h3>Dificultad</h3>
-                    <input id="difficulty" />
+                    <select name="Difficulty" id="gameDifficulty">
+                        <option value="hard">Dificil</option>
+                        <option value="mid">Medio</option>
+                        <option value="easy">Fácil</option>
+                    </select>
                 </div>
             </section>
             <section class="imageSelector">
@@ -84,52 +89,18 @@
         </div>
 
         <div id="questions">
-            <div class="question">
-
-                <div class="insertQuestion">
-                    <p id="" class="numberQuestion">1</p>
-                    <input type="text" id="inputQuestion" class="inputQuestion"/>
-                    <button class="delete-question"><span class="material-symbols-outlined">delete</span></button>
-                </div>
-                
-                <div class="selectAnswer">
-                    <div class="answerContainer">
-                        <p>A.</p>
-                        <input type="text" class="inputAnswer" />
-                        <button id="answerA"></button>
-                    </div>
-                    
-                    <div class="answerContainer">
-                        <p>B.</p>
-                        <input type="text" class="inputAnswer" />
-                        <button id="answerB"></button>
-                    </div>
-                    
-                    <div class="answerContainer">
-                        <p>C.</p>
-                        <input type="text" class="inputAnswer" />
-                        <button id="answerC"></button>
-                    </div>
-                    <div class="answerContainer">
-                        <p>D.</p>
-                        <input type="text" class="inputAnswer" />
-                        <button id="answerD"></button>
-                    </div>
-                    
-                </div>
-            </div>
-
-            <!-- Aca van las nuevas -->
+        
         </div>
+            <!-- Aca van las nuevas -->
 
         <div>
-            <button><span class="material-symbols-outlined">delete_forever</span>Eliminar Juego
+            <button id="deleteAllGameButton"><span class="material-symbols-outlined">delete_forever</span>Eliminar Juego
                 Completo</button>
-            <button>cancel</button>
-            <button>Guardar Cambios</button>
+            <button id="cancelButton">cancel</button>
+            <button id="saveChangesButton">Guardar Cambios</button>
         </div>
         </div>
-<script src="createEdit.js"></script>
+        <script src="createEdit.js"></script>
 </body>
 
 </html>

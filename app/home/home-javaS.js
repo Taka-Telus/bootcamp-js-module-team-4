@@ -70,6 +70,10 @@ async function getGames() {
     }
 }
 
+document.getElementById('createButton').addEventListener("click", () => {
+    window.location.href = "../createEditGame/createEdit.html";
+});
+
 welcome()
 getPointsPlayer()
 getGames()

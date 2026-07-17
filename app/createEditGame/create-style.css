@@ -42,6 +42,10 @@ input {
     border-radius: 5px;
 }
 
+input.invalid {
+    border: 1px solid red;
+}
+
 h3 {
     color: #404A3A;
     font-size: 14px;
