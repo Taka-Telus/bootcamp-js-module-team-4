@@ -28,13 +28,13 @@ document.getElementById('backHome').addEventListener("click", () => {
 });
 
 
-// ------------------
-//   Añade Preguntas
-// ------------------
+    // ------------------
+    //   Añade Preguntas
+    // ------------------
 
-addQuestion.addEventListener("click", () => {
+    addQuestion.addEventListener("click", () => {
 
-    let questionNumber = questionsContainer.children.length + 1;
+        let questionNumber = questionsContainer.children.length + 1;
 
     const question = document.createElement("div");
     question.innerHTML = `
