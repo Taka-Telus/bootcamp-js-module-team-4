@@ -2,6 +2,7 @@ const addQuestion = document.getElementById('addQuestion');
 const questionsContainer = document.getElementById('questions');
 let questionNumber = 0;
 
+const API = "https://quiz-api.cesar-kastli.workers.dev";
 
 // -------------------------
 //   Seleccion de pregunta
@@ -101,11 +102,15 @@ cancelGame.addEventListener("click", () => {
 //   Save Game
 // ------------
 const saveGame = document.getElementById('saveChangesButton')
-let tittleGame = document.getElementById('tittleGame');
+let titleGame = document.getElementById('titleGame');
 
 saveGame.addEventListener("click", () => {
     if (!validateInputs()) {
         return;
+    } else {
+        postGame();
+        postImages();
+        window.location.href = "../home/home.html";
     }
     const gameData = extractQuestions();
     console.log(gameData);
@@ -127,7 +132,7 @@ function validateInputs() {
         }
     };
 
-    const basicInputs = [tittleGame, document.getElementById('description'), document.getElementById('imagenURL')];
+    const basicInputs = [titleGame, document.getElementById('description'), document.getElementById('imagenURL')];
     basicInputs.forEach(tildeInputs);
 
     questionsContainer.querySelectorAll('.inputQuestion, .inputAnswer').forEach(tildeInputs);
@@ -147,7 +152,7 @@ function extractQuestions() {
     questionDivs.forEach((questionDiv, questionIndex) => {
         const questionText = questionDiv.querySelector('.inputQuestion').value;
 
-        setDeep(data, `questions.${questionIndex}.tittle`, questionText);
+        setDeep(data, `questions.${questionIndex}.title`, questionText);
 
         const answerContainers = questionDiv.querySelectorAll('.answerContainer');
         let correctAnswer = null;
@@ -156,7 +161,7 @@ function extractQuestions() {
         answerContainers.forEach(container => {
             const answerText = container.querySelector('.inputAnswer').value;
             const esCorrecto = container.querySelector('.answerButton').classList.contains('selectedCorrect');
-            
+
             if (esCorrecto) {
                 correctAnswer = answerText;
             } else {
@@ -171,9 +176,9 @@ function extractQuestions() {
         });
     });
 
+    console.log(data);
     return data;
 }
-
 
 // --------------------------------------------
 //   setDeep del cesar (NO TOCAR!!!!!!!!!!!!)
@@ -181,26 +186,77 @@ function extractQuestions() {
 // nota: pedir q te lo explique cesar por si acaso
 
 function setDeep(obj, path, value) {
-        const parts = typeof path === "string" ? path.split(".") : path;
-        let current = obj;
-        for (let i = 0; i < parts.length; i++) {
-            const key = parts[i];
-            const isLast = i === parts.length - 1;
-            if (isLast) {
-                current[key] = value;
-            } else {
+    const parts = typeof path === "string" ? path.split(".") : path;
+    let current = obj;
+    for (let i = 0; i < parts.length; i++) {
+        const key = parts[i];
+        const isLast = i === parts.length - 1;
+        if (isLast) {
+            current[key] = value;
+        } else {
 
-                const nextKey = parts[i + 1];
-                const nextIsArray = !isNaN(Number(nextKey));
-                if (current[key] === undefined) {
-                    current[key] = nextIsArray ? [] : {};
-                }
-                current = current[key];
+            const nextKey = parts[i + 1];
+            const nextIsArray = !isNaN(Number(nextKey));
+            if (current[key] === undefined) {
+                current[key] = nextIsArray ? [] : {};
             }
+            current = current[key];
         }
-        return obj;
     }
+    return obj;
+}
 
 //---------------
 // Enviar Juego 
 //---------------
+console.log(document.getElementById(`gameDificulty`))
+
+
+async function postGame() {
+
+
+    await fetch(`${API}/games`, {
+
+        method: "POST",
+
+        headers: {
+
+            "Content-Type": "application/json"
+
+        },
+
+        body: JSON.stringify({
+
+            title: document.getElementById(`titleGame`).value,
+
+            author: (localStorage.nickname),
+
+            image: document.getElementById(`imagenURL`).value,
+
+            difficulty: document.getElementById(`gameDifficulty`).value
+
+        })
+
+    });
+}
+
+async function postQuestions(id) {
+
+    await fetch(`${API}/games`, {
+
+        method: "PATCH",
+
+        headers: {
+
+            "Content-Type": "application/json"
+
+        },
+
+        body: JSON.stringify({
+
+            questions: data,
+
+        })
+
+    });
+}
