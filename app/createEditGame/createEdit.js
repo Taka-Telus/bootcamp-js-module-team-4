@@ -242,7 +242,7 @@ async function postGame() {
 
 async function postQuestions(id) {
 
-    await fetch(`${API}/games`, {
+    await fetch(`${API}/games/${id}`, {
 
         method: "PATCH",
 
