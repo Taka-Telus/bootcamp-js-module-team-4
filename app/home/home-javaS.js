@@ -33,7 +33,7 @@ async function getPointsPlayer() {
     } catch {
         errorHTML.style.display = 'flex';
     }
-    if(puntaje.score <= 0){
+    if (puntaje.score <= 0) {
         puntajeHTML.innerHTML = `0`;
     }
 
@@ -44,27 +44,41 @@ async function getGames() {
         const respuestaGames = await fetch(apiUrlGames);
         const games = await respuestaGames.json();
 
-        games.forEach((game, index) => {
+        games.forEach((game) => {
 
             const li = document.createElement("li");
             li.innerHTML = `
-                    <div id='games'>
-                        <div class='imgGameContainer'>
-                            <img src='${game.image}' class='imgGame'></img>
-                        </div>
-                        <div class='contentGame'>
-                            <span class='tittleGame'>${game.title}</span>
+                <div id='games'>
+                    <div class='imgGameContainer'>
+                        <img src='${game.image}' class='imgGame'>
+                    </div>
+                    <div class='contentGame'>
+                        <span class='tittleGame'>${game.title}</span>
 
-                            <p>${game.questionCount} - ${game.difficulty}</p>
+                        <p>${game.questionCount} - ${game.difficulty}</p>
 
-                            <div class='buttonsGame'>
-                                <button class='playButton' id='play-${game.id}'><span class="material-icons">play_arrow</span>PLAY</button>
-                                <button class='editButton' id='edit-${game.id}'><span class="material-icons">edit</span></button>
-                            </div>  
+                        <div class='buttonsGame'>
+                            <button class='playButton'>
+                                <span class="material-icons">play_arrow</span>PLAY
+                            </button>
+                            <button class='editButton'>
+                                <span class="material-icons">edit</span>
+                            </button>
                         </div>  
-                    </div>`;
+                    </div>  
+                </div>`;
+
             yourGames.appendChild(li);
+
+            const playButton = li.querySelector(".playButton");
+
+            playButton.addEventListener("click", () => {
+                console.log("Jugando:", game.title);
+
+                window.location.href = `../game-screen/game-screen.html?id=${game.id}`;;
+            });
         });
+
     } catch (error) {
         errorHTML.style.display = 'flex';
     }

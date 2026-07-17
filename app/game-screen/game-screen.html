@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="game-screen_script.js"></script>
+    <title>Partida</title>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <h2>TriviaBlast</h2>
+        </div>
+        <div>
+            <div class="puntaje">
+
+            </div>
+
+            <div class="config">
+
+            </div>
+        </div>
+    </header>
+
+    <div class="game_content">
+        <div class="progress-bar">
+            <div class="game-indicators">
+                <div class="question-number"></div>
+                <div class="time-left">
+                    <p></p>
+                </div>
+            </div>
+            <div class="time-bar"></div>
+        </div>
+
+        <h1 class="question-title" id="question-title"></h1>
+
+
+        <div class="question-popup" id="question-popup">
+            
+        </div>
+
+        <div class="option-card" id="card-1">
+            <p class="letter">A</p>
+            <p class="answer"></p>
+        </div>
+
+        <div class="option-card" id="card-2">
+            <p class="letter">B</p>
+            <p class="answer"></p>
+        </div>
+
+        <div class="option-card" id="card-3">
+            <p class="letter">C</p>
+            <p class="answer"></p>
+        </div>
+
+        <div class="option-card" id="card-4">
+            <p class="letter">D</p>
+            <p class="answer"></p>
+        </div>
+
+        <button id="next-option" hidden>Siguiente Pregunta</button>
+    </div>
+
+    <ol class="scoreboard" id="scoreboard"></ol>
+
+    <div class="scoreboard-buttons">
+        <button id="play-again">Jugar de nuevo</button>
+        <button id="home">Home</button>
+    </div>
+
+
+
+
+</body>
+
+</html>
