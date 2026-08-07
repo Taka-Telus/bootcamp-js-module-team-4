@@ -217,7 +217,6 @@ async function finishGame() {
     document.querySelector(".game_content").style.display = "none";
     document.querySelector("body").style.textAlign = "center";
 
-
     const scoreboard =
         document.querySelector("#scoreboard");
 
