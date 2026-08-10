@@ -19,7 +19,7 @@ questionsContainer.addEventListener("click", e => {
             btn.innerHTML = '';
             btn.classList.remove('selectedCorrect');
         });
-        e.target.innerHTML = 'si marco';
+        e.target.innerHTML = '✓';
         e.target.classList.add('selectedCorrect');
     }
 });
@@ -77,13 +77,13 @@ document.getElementById('backHome').addEventListener("click", () => {
     questionsContainer.appendChild(question);
 });
 
-const deleteAllGame = document.getElementById('deleteAllGameButton')
 
 
 // --------------
 //   Delate Game
 // --------------
 
+const deleteAllGame = document.getElementById('deleteAllGameButton')
 deleteAllGame.addEventListener("click", () => {
 
 });
@@ -109,11 +109,9 @@ saveGame.addEventListener("click", () => {
         return;
     } else {
         postGame();
-        postImages();
         window.location.href = "../home/home.html";
     }
     const gameData = extractQuestions();
-    console.log(gameData);
 });
 
 // -----------------------------------------
@@ -209,32 +207,21 @@ function setDeep(obj, path, value) {
 //---------------
 // Enviar Juego 
 //---------------
-console.log(document.getElementById(`gameDificulty`))
-
 
 async function postGame() {
 
 
     await fetch(`${API}/games`, {
-
         method: "POST",
-
         headers: {
-
             "Content-Type": "application/json"
-
         },
 
         body: JSON.stringify({
-
             title: document.getElementById(`titleGame`).value,
-
             author: (localStorage.nickname),
-
             image: document.getElementById(`imagenURL`).value,
-
             difficulty: document.getElementById(`gameDifficulty`).value
-
         })
 
     });
@@ -243,19 +230,13 @@ async function postGame() {
 async function postQuestions(id) {
 
     await fetch(`${API}/games/${id}`, {
-
         method: "PATCH",
-
         headers: {
-
             "Content-Type": "application/json"
-
         },
 
         body: JSON.stringify({
-
             questions: data,
-
         })
 
     });
